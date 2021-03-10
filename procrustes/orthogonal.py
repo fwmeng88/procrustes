@@ -47,13 +47,13 @@ def orthogonal(
     r"""Perform orthogonal Procrustes.
 
     Given a matrix :math:`\mathbf{A}_{m \times n}` and a reference matrix :math:`\mathbf{B}_{m
-    \times n}`, find the orthogonal (i.e., unitary) transformation matrix :math:`\mathbf{U}_{n
-    \times n}`that makes :math:`\mathbf{A}` as close as possible to :math:`\mathbf{B}`.
+    \times n}`, find the orthogonal (i.e., unitary) transformation matrix :math:`\mathbf{Q}_{n
+    \times n}` that makes :math:`\mathbf{A}` as close as possible to :math:`\mathbf{B}`.
     In other words,
 
     .. math::
-       \underbrace{\min}_{\left\{\mathbf{U} | \mathbf{U}^{-1} = {\mathbf{U}}^\dagger \right\}}
-                          \|\mathbf{A}\mathbf{U} - \mathbf{B}\|_{F}^2
+       \underbrace{\min}_{\left\{\mathbf{Q} | \mathbf{Q}^{-1} = {\mathbf{Q}}^\dagger \right\}}
+                          \|\mathbf{A}\mathbf{Q} - \mathbf{B}\|_{F}^2
 
     This Procrustes method requires the :math:`\mathbf{A}` and :math:`\mathbf{B}` matrices to
     have the same shape, which is gauranteed with the default ``pad`` argument for any given
@@ -101,7 +101,7 @@ def orthogonal(
     The optimal orthogonal matrix is obtained by,
 
     .. math::
-        \mathbf{U}_{\text{opt}} =
+        \mathbf{Q}_{\text{opt}} =
         \arg \underbrace{\min}_{\left\{\mathbf{Q} \left| {\mathbf{Q}^{-1} = {\mathbf{Q}}^\dagger}
              \right. \right\}} \|\mathbf{A}\mathbf{Q} - \mathbf{B}\|_{F}^2 =
         \arg \underbrace{\max}_{\left\{\mathbf{Q} \left| {\mathbf{Q}^{-1} = {\mathbf{Q}}^\dagger}
@@ -113,7 +113,7 @@ def orthogonal(
     .. math::
        \mathbf{A}^\dagger \mathbf{B} &= \tilde{\mathbf{U}} \tilde{\mathbf{\Sigma}}
                                           \tilde{\mathbf{V}}^{\dagger} \\
-       \mathbf{U}_{\text{opt}} &= \tilde{\mathbf{U}} \tilde{\mathbf{V}}^{\dagger}
+       \mathbf{Q}_{\text{opt}} &= \tilde{\mathbf{U}} \tilde{\mathbf{V}}^{\dagger}
 
     The singular values are always listed in decreasing order, with the smallest singular
     value in the bottom-right-hand corner of :math:`\tilde{\mathbf{\Sigma}}`.
@@ -206,23 +206,23 @@ def orthogonal_2sided(
     -----
     **Two-Sided Orthogonal Procrustes:** Given a matrix :math:`\mathbf{A}_{m \times n}` and a
     reference matrix :math:`\mathbf{B}_{m \times n}`, find two orthogonal (i.e., unitary)
-    transformation matrices :math:`\mathbf{U}_{n \times n}` that makes :math:`\mathbf{A}` as
+    transformation matrices :math:`\mathbf{Q}_{n \times n}` that makes :math:`\mathbf{A}` as
     close as possible to :math:`\mathbf{B}`. In other words,
 
     .. math::
-          \underbrace{\text{min}}_{\left\{ {\mathbf{U}_1 \atop \mathbf{U}_2} \left|
-            {\mathbf{U}_1^{-1} = \mathbf{U}_1^\dagger \atop \mathbf{U}_2^{-1} =
-            \mathbf{U}_2^\dagger} \right. \right\}}
-            \|\mathbf{U}_1^\dagger \mathbf{A} \mathbf{U}_2 - \mathbf{B}\|_{F}^2
-       &= \underbrace{\text{min}}_{\left\{ {\mathbf{U}_1 \atop \mathbf{U}_2} \left|
-             {\mathbf{U}_1^{-1} = \mathbf{U}_1^\dagger \atop \mathbf{U}_2^{-1} =
-             \mathbf{U}_2^\dagger} \right. \right\}}
-        \text{Tr}\left[\left(\mathbf{U}_1^\dagger\mathbf{A}\mathbf{U}_2 - \mathbf{B} \right)^\dagger
-                   \left(\mathbf{U}_1^\dagger\mathbf{A}\mathbf{U}_2 - \mathbf{B} \right)\right] \\
-       &= \underbrace{\text{min}}_{\left\{ {\mathbf{U}_1 \atop \mathbf{U}_2} \left|
-             {\mathbf{U}_1^{-1} = \mathbf{U}_1^\dagger \atop \mathbf{U}_2^{-1} =
-             \mathbf{U}_2^\dagger} \right. \right\}}
-          \text{Tr}\left[\mathbf{U}_2^\dagger\mathbf{A}^\dagger\mathbf{U}_1\mathbf{B} \right]
+          \underbrace{\text{min}}_{\left\{ {\mathbf{Q}_1 \atop \mathbf{Q}_2} \left|
+            {\mathbf{Q}_1^{-1} = \mathbf{Q}_1^\dagger \atop \mathbf{Q}_2^{-1} =
+            \mathbf{Q}_2^\dagger} \right. \right\}}
+            \|\mathbf{Q}_1^\dagger \mathbf{A} \mathbf{Q}_2 - \mathbf{B}\|_{F}^2
+       &= \underbrace{\text{min}}_{\left\{ {\mathbf{Q}_1 \atop \mathbf{Q}_2} \left|
+             {\mathbf{Q}_1^{-1} = \mathbf{Q}_1^\dagger \atop \mathbf{Q}_2^{-1} =
+             \mathbf{Q}_2^\dagger} \right. \right\}}
+        \text{Tr}\left[\left(\mathbf{Q}_1^\dagger\mathbf{A}\mathbf{Q}_2 - \mathbf{B} \right)^\dagger
+                   \left(\mathbf{Q}_1^\dagger\mathbf{A}\mathbf{Q}_2 - \mathbf{B} \right)\right] \\
+       &= \underbrace{\text{min}}_{\left\{ {\mathbf{Q}_1 \atop \mathbf{Q}_2} \left|
+             {\mathbf{Q}_1^{-1} = \mathbf{Q}_1^\dagger \atop \mathbf{Q}_2^{-1} =
+             \mathbf{Q}_2^\dagger} \right. \right\}}
+          \text{Tr}\left[\mathbf{Q}_2^\dagger\mathbf{A}^\dagger\mathbf{Q}_1\mathbf{B} \right]
 
     Using the singular value decomposition (SVD) of :math:`\mathbf{A}` and :math:`\mathbf{B}`,
 
@@ -233,24 +233,24 @@ def orthogonal_2sided(
     The two optimal orthogonal matrices are obtained through,
 
     .. math::
-       \mathbf{U}_1 = \mathbf{U}_A \mathbf{U}_B^\dagger \\
-       \mathbf{U}_2 = \mathbf{V}_B \mathbf{V}_B^\dagger
+       \mathbf{Q}_1 = \mathbf{U}_A \mathbf{U}_B^\dagger \\
+       \mathbf{Q}_2 = \mathbf{V}_A \mathbf{V}_B^\dagger
 
     **Two-Sided Orthogonal Procrustes with Single-Transformation:** Given a **symmetric** matrix
     :math:`\mathbf{A}_{n \times n}` and a reference :math:`\mathbf{B}_{n \times n}`, find one
-    orthogonal (i.e., unitary) transformation matrix :math:`\mathbf{U}_{n \times n}` that makes
+    orthogonal (i.e., unitary) transformation matrix :math:`\mathbf{Q}_{n \times n}` that makes
     :math:`\mathbf{A}` as close as possible to :math:`\mathbf{B}`. I.e.,
 
     .. math::
-       \underbrace{\min}_{\left\{\mathbf{U} | \mathbf{U}^{-1} = {\mathbf{U}}^\dagger \right\}}
-                          \|\mathbf{U}^\dagger\mathbf{A}\mathbf{U} - \mathbf{B}\|_{F}^2
-       &= \underbrace{\text{min}}_{\left\{\mathbf{U} | \mathbf{U}^{-1} = {\mathbf{U}}^\dagger
+       \underbrace{\min}_{\left\{\mathbf{Q} | \mathbf{Q}^{-1} = {\mathbf{Q}}^\dagger \right\}}
+                          \|\mathbf{Q}^\dagger\mathbf{A}\mathbf{Q} - \mathbf{B}\|_{F}^2
+       &= \underbrace{\text{min}}_{\left\{\mathbf{Q} | \mathbf{Q}^{-1} = {\mathbf{Q}}^\dagger
                                    \right\}}
-          \text{Tr}\left[\left(\mathbf{U}^\dagger\mathbf{A}\mathbf{U} - \mathbf{B} \right)^\dagger
-                         \left(\mathbf{U}^\dagger\mathbf{A}\mathbf{U} - \mathbf{B} \right)\right] \\
-       &= \underbrace{\text{max}}_{\left\{\mathbf{U} | \mathbf{U}^{-1} = {\mathbf{U}}^\dagger
+          \text{Tr}\left[\left(\mathbf{Q}^\dagger\mathbf{A}\mathbf{Q} - \mathbf{B} \right)^\dagger
+                         \left(\mathbf{Q}^\dagger\mathbf{A}\mathbf{Q} - \mathbf{B} \right)\right] \\
+       &= \underbrace{\text{max}}_{\left\{\mathbf{Q} | \mathbf{Q}^{-1} = {\mathbf{Q}}^\dagger
                                    \right\}}
-          \text{Tr}\left[\mathbf{U}^\dagger\mathbf{A}^\dagger\mathbf{U}\mathbf{B} \right]
+          \text{Tr}\left[\mathbf{Q}^\dagger\mathbf{A}^\dagger\mathbf{Q}\mathbf{B} \right]
 
     Using the singular value decomposition (SVD) of :math:`\mathbf{A}` and :math:`\mathbf{B}`,
 
@@ -258,10 +258,10 @@ def orthogonal_2sided(
        \mathbf{A} = \mathbf{U}_A \mathbf{\Lambda}_A \mathbf{U}_A^\dagger \\
        \mathbf{B} = \mathbf{U}_B \mathbf{\Lambda}_B \mathbf{U}_B^\dagger
 
-    The optimal orthogonal matrix :math:`\mathbf{U}_\text{opt}` is obtained through,
+    The optimal orthogonal matrix :math:`\mathbf{Q}_\text{opt}` is obtained through,
 
     .. math::
-       \mathbf{U}_\text{opt} = \mathbf{U}_A \mathbf{S} \mathbf{U}_A^\dagger
+       \mathbf{Q}_\text{opt} = \mathbf{U}_A \mathbf{S} \mathbf{U}_B^\dagger
 
     where :math:`\mathbf{S}` is a diagonal matrix with :math:`\pm{1}` elements,
 
