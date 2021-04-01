@@ -110,7 +110,16 @@ quadratic assignment problem it can be used here. The objective function is to m
 :math:`E_{qap} (\mathbf{M}, \mu, \nu)`, :cite:`gold1996softassign,yuille1994statistical`,
 which is defined as follows,
 
+.. math::
 
+    \begin{equation}
+    \begin{split}
+        E_{qap}(\mathbf{M}, \mu, \nu) =
+        & -\frac{1}{2}\sum_{aibj}\mathbf{C}_{ai;bj}\mathbf{M}_{ai}\mathbf{M}_{bj} \\
+        & + \sum_{a} \mu_{a} \left( \sum_{i} \mathbf{M}_{ai} -1 \right ) + \sum_{i} \nu_{i} \left( \sum_{a} \mathbf{M}_{ai} -1 \right) \\
+        & - \frac{\gamma}{2} \sum_{ai} \mathbf{M}^2_{ai} + \frac{1}{\beta} \sum_{ai} \mathbf{M}_{ai} \log{\mathbf{M}_{ai}}
+    \end{split}
+    \end{equation}
 
 
 Procrustes problems arise when aligning molecules and other objects, when evaluating optimal basis
