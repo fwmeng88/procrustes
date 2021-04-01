@@ -112,13 +112,11 @@ which is defined as follows,
 
 .. math::
 
-    \begin{equation}
-        E_{qap}(\mathbf{M}, \mu, \nu) =
-        & - \frac{1}{2} \sum_{aibj} \mathbf{C}_{ai;bj} \mathbf{M}_{ai} \mathbf{M}_{bj} \\
-        & + \sum_{a} \mu_{a} \left\( \sum_{i} \mathbf{M}_{ai} -1 \right\) + \sum_{i} \nu_{i} \left\( \sum_{a} \mathbf{M}_{ai} -1 \right\) \\
-        & - \frac{\gamma}{2} \sum_{ai} {\mathbf{M}_{ai}}^2 + \frac{1}{\beta} \sum_{ai} \mathbf{M}_{ai} \log{\mathbf{M}_{ai}} \\
-    \end{equation}
-
+    \begin{aligned}
+    E_{q a p}(\mathbf{M}, \mu, \nu) = &-\frac{1}{2} \sum_{a i b j} \mathbf{C}_{a i ; b j} \mathbf{M}_{a i} \mathbf{M}_{b j} \\
+    &+\sum_{a} \mu_{a}\left(\sum_{i} \mathbf{M}_{a i}-1\right)+\sum_{i} \nu_{i}\left(\sum_{a} \mathbf{M}_{a i}-1\right) \\
+    &-\frac{\gamma}{2} \sum_{a i} \mathbf{M}_{a i}^{2}+\frac{1}{\beta} \sum_{a i} \mathbf{M}_{a i} \log \mathbf{M}_{a i}
+    \end{aligned}
 
 Procrustes problems arise when aligning molecules and other objects, when evaluating optimal basis
 transformations, when determining optimal mappings between sets, and in many other contexts. This
