@@ -114,8 +114,8 @@ which is defined as follows,
 
     \begin{equation}
         E_{qap}(\mathbf{M}, \mu, \nu) =
-        & - \frac{1}{2}\sum_{aibj} \mathbf{C}_{ai;bj} \mathbf{M}_{ai} \mathbf{M}_{bj} \\
-        & + \sum_{a} \mu_{a} \left( \sum_{i} \mathbf{M}_{ai} -1 \right) + \sum_{i} \nu_{i} \left( \sum_{a} \mathbf{M}_{ai} -1 \right) \\
+        & - \frac{1}{2} \sum_{aibj} \mathbf{C}_{ai;bj} \mathbf{M}_{ai} \mathbf{M}_{bj} \\
+        & + \sum_{a} \mu_{a} \left\( \sum_{i} \mathbf{M}_{ai} -1 \right\) + \sum_{i} \nu_{i} \left\( \sum_{a} \mathbf{M}_{ai} -1 \right\) \\
         & - \frac{\gamma}{2} \sum_{ai} {\mathbf{M}_{ai}}^2 + \frac{1}{\beta} \sum_{ai} \mathbf{M}_{ai} \log{\mathbf{M}_{ai}} \\
     \end{equation}
 
