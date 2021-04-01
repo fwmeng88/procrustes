@@ -40,12 +40,14 @@ where :math:`\mathbf{A} \in \mathbb{R}^{m \times n}` is the input matrix,
 
 .. math::
 
+    \begin{equation}
     \begin{split}
         \\\| \mathbf{A} \|_{F}
         & = \sqrt{\sum^m_{i=1} \sum^n_{j=1} |a_{ij}|^2} \\
         & = \sqrt{ \text{Tr} (\mathbf{A}^{\dagger} \mathbf{A})} \\
         & = \sqrt{ \sum^{\min \{m, n \}}_{i=1} \rho^2_i (\mathbf{A})}
     \end{split}
+    \end{equation}
 
 Here :math:`a_{ij}`, :math:`\text{Tr}(\mathbf{A})`, and :math:`\rho^2_i (\mathbf{A})` denotes the
 element :math:`ij`, trace, and singular values of the matrix of :math:`\mathbf{A}`, respectively.
