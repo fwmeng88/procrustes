@@ -1,0 +1,9 @@
+name: notebook_environment
+
+dependencies:
+  - python
+  - pip
+  - pip:
+      - numpy
+      - iodata
+      - matplotlib
