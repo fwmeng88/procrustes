@@ -1,9 +1,8 @@
 name: notebook_environment
-
 dependencies:
   - python
   - pip
-  - pip:
-      - numpy
-      - iodata
-      - matplotlib
+  - jupyter
+  - numpy
+  - matplotlib
+  - qc-iodata
